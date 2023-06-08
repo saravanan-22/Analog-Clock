@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analog Clock</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+ <style>
+     body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000000;
+      
+    }
+
+    .clock {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background-color: #fff;
+     position: relative;
+      display: flex;
+      align-items: center;
+    justify-content: center;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .hour-hand, .minute-hand, .second-hand {
+      position: absolute;
+      background-color: #000;
+     transform-origin: bottom center;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .hour-hand {
+      width: 6px;
+      height: 100px;
+      top: calc(50% - 100px);
+      left: calc(50% - 3px);
+    }
+
+    .minute-hand {
+      width: 4px;
+      height: 140px;
+        top: calc(50% - 140px);
+      left: calc(50% - 2px);
+    }
+
+    .second-hand {
+      width: 2px;
+      height: 150px;
+      top: calc(50% - 150px);
+      left: calc(50% - 1px);
+      background-color: red;
+    }
+
+    .center-dot {
+      width: 12px;
+      height: 12px;
+       background-color: #000;
+      border-radius: 50%;
+     position: absolute;
+      top: calc(50% - 6px);
+      left: calc(50% - 6px);
+    }
+
+    .numbers {
+      position: absolute;
+      width: 100%;
+       height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .number {
+      position: absolute;
+      top: 1em;
+      transform-origin: bottom center;
+ padding-bottom: 5.8em;
+      transform: rotate(-30deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="clock">
+    <div class="numbers">
+      <div class="number" style="transform: rotate(30deg)">1</div>
+      <div class="number" style="transform: rotate(60deg)">2</div>
+       <div class="number" style="transform: rotate(90deg)">3</div>
+      <div class="number" style="transform: rotate(120deg)">4</div>
+      <div class="number" style="transform: rotate(150deg)">5</div>
+       <div class="number" style="transform: rotate(180deg)">6</div>
+      <div class="number" style="transform: rotate(210deg)">7</div>
+      <div class="number" style="transform: rotate(240deg)">8</div>
+       <div class="number" style="transform: rotate(270deg)">9</div>
+      <div class="number" style="transform: rotate(300deg)">10</div>
+         <div class="number" style="transform: rotate(330deg)">11</div>
+      <div class="number" style="transform: rotate(360deg)">12</div>
+    </div>
+    <div class="hour-hand"></div>
+    <div class="minute-hand"></div>
+        <div class="second-hand"></div>
+    <div class="center-dot"></div>
+  </div>
+
+  <script>
+function rotateClockHands() {
+  let currentDate = new Date();
+  let hourHand = document.querySelector('.hour-hand');
+  let minuteHand = document.querySelector('.minute-hand');
+   let secondHand = document.querySelector('.second-hand');
+  let hours = currentDate.getHours();
+  let minutes = currentDate.getMinutes();let seconds = currentDate.getSeconds();
+  let hourRotation = 30 * hours + minutes / 2;
+   let minuteRotation = 6 * minutes + seconds / 10;
+  let secondRotation = 6 * seconds;
+
+  hourHand.style.transform = `rotate(${hourRotation}deg)`;
+  minuteHand.style.transform = `rotate(${minuteRotation}deg)`;
+    secondHand.style.transform = `rotate(${secondRotation}deg)`;
+}
+setInterval(rotateClockHands, 1000);
+
+
+
+  </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>
